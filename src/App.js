@@ -3,7 +3,7 @@ import "./styles.css"; // Importing the styles.css file
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BooksGrid from "./components/BooksGrid";
-import Readlist from "./components/Readlist";
+import Wishlist from "./components/Wishlist";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -19,13 +19,13 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/readlist">Read List</Link>
+                <Link to="/Wishlist">Wish List</Link>
               </li>
             </ul>
           </nav>
           <Routes>
             <Route path="/" element={<BooksGrid />}></Route>
-            <Route path="/watchlist" element={<Readlist />}></Route>
+            <Route path="/watchlist" element={<Wishlist />}></Route>
           </Routes>
         </Router>
       </div>
