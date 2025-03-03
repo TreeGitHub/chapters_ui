@@ -8,6 +8,15 @@ export default function BooksGrid() {
   const [genre, setGenre] = useState("All");
   const [rating, setRating] = useState("All");
 
+  // Get data from file
+  useEffect(() => {
+    fetch("books.json")
+      .then((Response) => Response.json())
+      .then((data) => setBooks(data));
+  }, []);
+
+  // Get data from database
+  /*
   useEffect(() => {
     fetch("http://localhost:4000/api/books")
       .then((response) => {
@@ -26,6 +35,7 @@ export default function BooksGrid() {
       })
       .catch((error) => console.error("Fetch error: ", error));
   }, []);
+*/
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
