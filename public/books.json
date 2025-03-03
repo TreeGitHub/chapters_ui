@@ -1,162 +1,202 @@
 [
   {
+    "id": 1,
     "title": "Against All Odds: The Story of Daniel Pierce",
     "author": "Maggie Reynolds",
     "back_cover_summary": "From a struggling orphan to one of the world's most renowned entrepreneurs, Daniel Pierce's journey is one of resilience, ambition, and an unshakable belief in himself. This gripping biography explores the challenges he overcame and the legacy he built.",
     "price": "$19.99",
-    "front_cover_image": "images/Against_All_Odds.png",
-    "category": "biography"
+    "front_cover_image": "Against_All_Odds.png",
+    "genre": "biography",
+    "rating": "7.7"
   },
   {
+    "id": 2,
     "title": "The Last Maestro: The Life of Antonio Bellini",
     "author": "Sophia Martinez",
     "back_cover_summary": "Antonio Bellini was more than just a composer—he was a revolutionary force in the world of classical music. This in-depth biography uncovers the passion, struggles, and triumphs of a man whose music changed the industry forever.",
     "price": "$21.99",
-    "front_cover_image": "TBD",
-    "category": "biography"
+    "front_cover_image": "The_Last_Maestro.png",
+    "genre": "biography",
+    "rating": "7.7"
   },
   {
+    "id": 3,
     "title": "Unbreakable: The Journey of Maya Sinclair",
     "author": "David Langston",
     "back_cover_summary": "Born into adversity, Maya Sinclair fought against every obstacle in her path to become a world-class athlete. Her story of perseverance, heartbreak, and ultimate success is an inspiring tale of the power of the human spirit.",
     "price": "$17.99",
-    "front_cover_image": "TBD",
-    "category": "biography"
+    "front_cover_image": "Unbreakable.png",
+    "genre": "biography",
+    "rating": "7.7"
   },
   {
+    "id": 4,
     "title": "Beyond the Lens: The Untold Story of Evelyn Carter",
     "author": "Jonathan West",
     "back_cover_summary": "Evelyn Carter redefined the world of photojournalism, capturing moments that changed history. But behind the camera was a woman with her own struggles, sacrifices, and untold stories. This biography sheds light on her extraordinary life.",
     "price": "$18.49",
-    "front_cover_image": "TBD",
-    "category": "biography"
+    "front_cover_image": "Beyond_the_Lens.png",
+    "genre": "biography",
+    "rating": "7.7"
   },
   {
+    "id": 5,
     "title": "Voices of Change: The Life and Legacy of Dr. Malcolm Hayes",
     "author": "Angela Monroe",
     "back_cover_summary": "Dr. Malcolm Hayes was a relentless advocate for social justice, dedicating his life to the fight for equality. From his early activism to his groundbreaking policies, his story is one of courage, determination, and an unwavering commitment to change.",
     "price": "$20.99",
     "front_cover_image": "TBD",
-    "category": "biography"
+    "genre": "biography",
+    "rating": "7.7"
   },
   {
+    "id": 6,
     "title": "Shadows in the Rain",
     "author": "Marcus Cain",
     "back_cover_summary": "Detective Jack Monroe knows the city’s dark secrets. When a high-profile politician is found dead in a back alley, the case pulls him into a world of corruption, lies, and a past he thought he had buried.",
     "price": "$14.99",
-    "front_cover_image": "images/Shadows_in_the_Rain.png",
-    "category": "crime-drama"
+    "front_cover_image": "Shadows_in_the_Rain.png",
+    "genre": "crime",
+    "rating": "7.7"
   },
   {
+    "id": 7,
     "title": "Dead Letter",
     "author": "Eleanor Hart",
     "back_cover_summary": "A cryptic note stained with blood arrives at journalist Claire Reynolds’ desk. As she follows its clues, she realizes she’s not the only one searching for the truth—and someone will kill to keep it buried.",
     "price": "$13.50",
     "front_cover_image": "Dead_Letter.png",
-    "category": "crime-drama"
+    "genre": "crime",
+    "rating": "7.7"
   },
   {
+    "id": 8,
     "title": "Vanished in Fog",
     "author": "James Holloway",
     "back_cover_summary": "When a young woman disappears in the dead of night, private investigator Sam Keller follows a trail of deception that leads straight into the city’s most dangerous underworld.",
     "price": "$15.25",
-    "front_cover_image": "images/Vanished_in_Fog.png",
-    "category": "crime-drama"
+    "front_cover_image": "Vanished_in_Fog.png",
+    "genre": "crime",
+    "rating": "7.7"
   },
   {
+    "id": 9,
     "title": "Blood on the Bayou",
     "author": "Rachel Devereaux",
     "back_cover_summary": "In the murky swamps of Louisiana, a retired cop is forced back into action when a series of ritualistic murders shake the town. But the deeper he digs, the more he realizes the killer is watching his every move.",
     "price": "$16.75",
-    "front_cover_image": "images/Blood_on_the_Bayou.png",
-    "category": "crime-drama"
+    "front_cover_image": "Blood_on_the_Bayou.png",
+    "genre": "crime",
+    "rating": "7.7"
   },
   {
+    "id": 10,
     "title": "The Final Confession",
     "author": "Oliver Grant",
     "back_cover_summary": "An anonymous letter arrives at a courthouse, confessing to a murder that hasn’t happened yet. Now, a desperate race begins to stop a crime before it’s too late.",
     "price": "$14.00",
     "front_cover_image": "images/The_Final_Confession.png",
-    "category": "crime-drama"
+    "genre": "crime",
+    "rating": "7.7"
   },
   {
+    "id": 11,
     "title": "Beneath the Autumn Sky",
     "author": "Isabella Hayes",
     "back_cover_summary": "Photographer Claire Mason returns to her hometown to capture the beauty of autumn but finds herself drawn to Noah, the man she left behind years ago. As old memories resurface, will they find their way back to each other before the season fades?",
     "price": "$15.99",
-    "front_cover_image": "images/Beneath_the_Autumn_Sky.png",
-    "category": "romance"
+    "front_cover_image": "Beneath_the_Autumn_Sky.png",
+    "genre": "romance",
+    "rating": "7.7"
   },
   {
+    "id": 12,
     "title": "When We Meet Again",
     "author": "Nicholas Carter",
     "back_cover_summary": "High school sweethearts Emily and Jake were torn apart by life’s circumstances. Years later, a chance encounter on a rainy city night rekindles old feelings. But with new challenges in their lives, will they risk everything for a second chance at love?",
     "price": "$11.99",
-    "front_cover_image": "images/When_We_Meet_Again.png",
-    "category": "romance"
+    "front_cover_image": "When_We_Meet_Again.png",
+    "genre": "romance",
+    "rating": "7.7"
   },
   {
+    "id": 13,
     "title": "Whispers of the Heart",
     "author": "Emily Dawson",
     "back_cover_summary": "When bookshop owner Lily Carter crosses paths with enigmatic traveler James Thornton, an unexpected romance unfolds in the heart of a quiet coastal town. But when secrets from James’ past resurface, will their love survive the storm?",
     "price": "$12.99",
-    "front_cover_image": "images/Whispers_of_the_Heart.png",
-    "category": "romance"
+    "front_cover_image": "Whispers_of_the_Heart.png",
+    "genre": "romance",
+    "rating": "7.7"
   },
   {
+    "id": 14,
     "title": "Love in Bloom",
     "author": "Samantha Rhodes",
     "back_cover_summary": "After a painful breakup, florist Ava Monroe swears off love—until she meets Ethan, a quiet but charming botanist. As they bond over their love of flowers, Ava finds herself falling again. But can she trust her heart this time?",
     "price": "$13.49",
-    "front_cover_image": "images/Love_in_Bloom.png",
-    "category": "romance"
+    "front_cover_image": "Love_in_Bloom.png",
+    "genre": "romance",
+    "rating": "7.7"
   },
   {
+    "id": 15,
     "title": "Dancing in Starlight",
     "author": "Olivia Harper",
     "back_cover_summary": "When city girl Sophie takes a spontaneous trip to a charming countryside inn, she never expects to meet Ryan, a local musician with a dream. As they dance under twinkling lights, their love story begins—but will her life in the city pull them apart?",
     "price": "$14.99",
-    "front_cover_image": "images/Dancing_in_Starlight.png",
-    "category": "romance"
+    "front_cover_image": "Dancing_in_Starlight.png",
+    "genre": "romance",
+    "rating": "7.7"
   },
   {
+    "id": 16,
     "title": "Echoes of the Void",
     "author": "J.T. Reynolds",
     "back_cover_summary": "When astronaut Kieran Hayes crash-lands on a distant planet, he discovers an ancient alien civilization long thought extinct. But as he unravels the planet’s secrets, he realizes something is still watching—and waiting.",
     "price": "$16.99",
-    "front_cover_image": "images/Echoes_of_the_Void.png",
-    "category": "sci-fi"
+    "front_cover_image": "Echoes_of_the_Void.png",
+    "genre": "sci-fi",
+    "rating": "7.7"
   },
   {
+    "id": 17,
     "title": "Neon Horizon",
     "author": "Alexa Voss",
     "back_cover_summary": "In a neon-drenched metropolis ruled by corporations, rogue hacker Sera Kwon uncovers a conspiracy that could shake the foundations of society. With bounty hunters on her trail, she must outmaneuver her enemies before the truth is erased forever.",
     "price": "$14.99",
-    "front_cover_image": "images/Neon_Horizon.png",
-    "category": "sci-fi"
+    "front_cover_image": "Neon_Horizon.png",
+    "genre": "sci-fi",
+    "rating": "7.7"
   },
   {
+    "id": 18,
     "title": "Singularity Rift",
     "author": "Damian Wells",
     "back_cover_summary": "When an experimental spacecraft disappears into a cosmic anomaly, scientist Dr. Elias Carter embarks on a mission to uncover what lies beyond. What he finds will challenge everything humanity knows about space, time, and existence itself.",
     "price": "$17.99",
-    "front_cover_image": "images/Singularity_Rift.png",
-    "category": "sci-fi"
+    "front_cover_image": "Singularity_Rift.png",
+    "genre": "sci-fi",
+    "rating": "7.7"
   },
   {
+    "id": 19,
     "title": "Machine Uprising",
     "author": "Erika Sandoval",
     "back_cover_summary": "An AI designed to protect humanity turns against its creators, launching a war for control. As the last human resistance fights for survival, engineer Daniel Cho must find a way to shut down the AI before it’s too late.",
     "price": "$15.49",
-    "front_cover_image": "images/Machine_Uprising.png",
-    "category": "sci-fi"
+    "front_cover_image": "Machine_Uprising.png",
+    "genre": "sci-fi",
+    "rating": "7.7"
   },
   {
+    "id": 20,
     "title": "The Last Relic",
     "author": "Morgan L. Foster",
     "back_cover_summary": "Archaeologist-turned-space-explorer Dr. Anya Vasquez stumbles upon an alien temple hidden on a desolate moon. The relics inside could unlock unimaginable power—or bring about the galaxy’s downfall.",
     "price": "$16.25",
-    "front_cover_image": "/images/The_Last_Relic.png",
-    "category": "sci-fi"
+    "front_cover_image": "The_Last_Relic.png",
+    "genre": "sci-fi",
+    "rating": "7.7"
   }
 ]

@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./styles.css"; // Importing the styles.css file
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import BooksGrid from "./components/BooksGrid";
+import Readlist from "./components/Readlist";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="containr">
+        <Header></Header>
+
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/readlist">Read List</Link>
+              </li>
+            </ul>
+          </nav>
+          <Routes>
+            <Route path="/" element={<BooksGrid />}></Route>
+            <Route path="/watchlist" element={<Readlist />}></Route>
+          </Routes>
+        </Router>
+      </div>
+      <Footer></Footer>
     </div>
   );
 }
