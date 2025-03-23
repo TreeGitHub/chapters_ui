@@ -54,7 +54,7 @@ body {
 
 /* Books Grid Styles */
 .books-grid,
-.Readlist {
+.readlist {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
   gap: 2rem 2rem;
@@ -245,7 +245,6 @@ nav a:hover {
 }
 
 .slider-label {
-  color: #fff;
   font-size: 12px;
   width: 100%;
   line-height: 24px;
@@ -254,8 +253,10 @@ nav a:hover {
 
 input:checked + .slider:before {
   transform: translateX(125px); /* Move the circle to the other side */
+  color: #fff;
 }
 
 input:checked + .slider {
-  background-color: #ffa100;
+  background-color: #fbc600;
+  color: black;
 }

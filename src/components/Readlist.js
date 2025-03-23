@@ -6,7 +6,7 @@ export default function Readlist({ books, readlist, toggleReadlist }) {
   return (
     <div>
       <h1 className="title">Your Read List</h1>
-      <div className="Readlist">
+      <div className="readlist">
         {readlist.map((id) => {
           const book = books.find((book) => book.id === id);
           return (
