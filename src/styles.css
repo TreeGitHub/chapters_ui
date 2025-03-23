@@ -54,7 +54,7 @@ body {
 
 /* Books Grid Styles */
 .books-grid,
-.Wishlist {
+.Readlist {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
   gap: 2rem 2rem;
@@ -69,6 +69,13 @@ body {
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures elements are spaced evenly */
+  align-items: center;
+  height: 100%; /* Make all cards the same height */
+  padding-bottom: 1rem; /* Add space at bottom */
+  min-height: 400px; /* Ensures cards are uniform in height */
 }
 
 .book-card:hover {
@@ -87,8 +94,10 @@ body {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  flex-grow: 1; /* Ensures content expands properly */
+  justify-content: space-between; /* Pushes elements apart */
   text-align: center;
+  width: 100%;
 }
 
 .book-card-title {
@@ -101,9 +110,9 @@ body {
   font-weight: bold;
   background: #141414;
   padding: 3px 10px;
-  margin: 0 auto;
   width: 50px;
   border-radius: 50px;
+  margin: 0 auto 1.5rem auto; /* Ensures proper spacing below rating */
 }
 
 .book-card-genre {
@@ -111,7 +120,7 @@ body {
   margin-right: 10px;
 }
 
-.Wishlist-btn {
+.Readlist-btn {
   border: none;
   background: #2196f3;
   color: white;
@@ -196,11 +205,13 @@ nav a:hover {
 }
 
 .switch {
-  margin: 20px auto;
   position: relative;
   display: inline-block;
-  width: 150px; /* Width large enough to fit the label text */
-  height: 24px; /* Adjust height as needed */
+  width: 150px; /* Ensures enough space for the label */
+  height: 24px; /* Adjust height if needed */
+  margin: 1.5rem auto 0 auto; /* Adds spacing above the switch */
+  padding-top: 0.5rem; /* Fine-tuned spacing */
+  align-self: center; /* Ensures proper alignment in flex containers */
 }
 
 .switch input {

@@ -1,41 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles.css"; // Importing the styles.css file
 import BookCard from "./BookCard";
 
-export default function BooksGrid() {
-  const [books, setBooks] = useState([]);
+export default function BooksGrid({ books, readlist, toggleReadlist }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [genre, setGenre] = useState("All");
   const [rating, setRating] = useState("All");
-
-  // Get data from file
-  useEffect(() => {
-    fetch("books.json")
-      .then((Response) => Response.json())
-      .then((data) => setBooks(data));
-  }, []);
-
-  // Get data from database
-  /*
-  useEffect(() => {
-    fetch("http://localhost:4000/api/books")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok " + response.statusText);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Extract the books array from the 'data' property
-        if (Array.isArray(data.data)) {
-          setBooks(data.data); // Assuming the books are in the 'data' property
-        } else {
-          console.error("Fetched data is not an array:", data);
-        }
-      })
-      .catch((error) => console.error("Fetch error: ", error));
-  }, []);
-*/
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -122,7 +92,14 @@ export default function BooksGrid() {
       </div>
       <div className="books-grid">
         {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => <BookCard book={book} key={book.id} />)
+          filteredBooks.map((book) => (
+            <BookCard
+              book={book}
+              key={book.id}
+              toggleReadlist={toggleReadlist}
+              isReadlisted={readlist.includes(book.id)}
+            ></BookCard>
+          ))
         ) : (
           <p>No books available.</p>
         )}

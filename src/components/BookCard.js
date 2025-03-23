@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.css"; // Importing the styles.css file
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, isReadlisted, toggleReadlist }) {
   const handlerError = (e) => {
     e.target.src = "images/default.jpg";
   };
@@ -21,10 +21,25 @@ export default function BookCard({ book }) {
       />
       <div className="book-card-info">
         <h3 className="book-card-title">{book.title}</h3>
-        <p className="book-card-genre">{book.genre}</p>
-        <p className={`book-card-rating ${getRatingClass(book.rating)}`}>
-          {book.rating}
-        </p>
+        <div>
+          <span className="book-card-genre">{book.genre}</span>
+          <span className={`book-card-rating ${getRatingClass(book.rating)}`}>
+            {book.rating}
+          </span>
+        </div>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={isReadlisted}
+            onChange={() => toggleReadlist(book.id)}
+          ></input>
+
+          <span className="slider">
+            <span className="slider-label">
+              {isReadlisted ? "In Readlist" : "Add to Readlist"}
+            </span>
+          </span>
+        </label>
       </div>
     </div>
   );
