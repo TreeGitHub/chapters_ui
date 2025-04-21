@@ -34,14 +34,6 @@ function App() {
       .catch((error) => console.error("Fetch error: ", error));
   }, []);
 
-  // Get books from file
-  /* useEffect(() => {
-    fetch("books.json")
-      .then((Response) => Response.json())
-      .then((data) => setBooks(data));
-  }, []);
-*/
-
   // Get books from database
   useEffect(() => {
     fetch(`${baseURL}books`)
@@ -65,6 +57,9 @@ function App() {
   // Toggle the readlist state (add/remove books)
   const toggleReadlist = (bookId) => {
     const isInList = readlist.includes(bookId);
+    // Determine the method based on whether the book is already in the list
+    // If the book is in the list, we want to remove it (DELETE)
+    // If the book is not in the list, we want to add it (POST)
     const method = isInList ? "DELETE" : "POST";
 
     // Optimistically update state
@@ -74,12 +69,14 @@ function App() {
 
     // Send the API call
     fetch(
+      // For DELETE requests, the book ID is in the URL
       `${baseURL}users/${userId}/reading_list${isInList ? `/${bookId}` : ""}`,
       {
         method: method,
         headers: {
           "Content-Type": "application/json",
         },
+        // For POST requests, we need to send the book ID in the body
         ...(method === "POST"
           ? { body: JSON.stringify({ book_id: bookId }) }
           : {}),
