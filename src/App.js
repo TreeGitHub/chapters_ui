@@ -6,16 +6,40 @@ import BooksGrid from "./components/BooksGrid";
 import Readlist from "./components/Readlist";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-const userId = 1; // hardcoded user ID for now
 const baseURL = "http://localhost:4000/api/";
 
 function App() {
   const [books, setBooks] = useState([]);
   const [readlist, setReadlist] = useState([]);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const username = "kate";
+    const password = "password";
+
+    fetch(`${baseURL}users?name=${username}&password=${password}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.user_id) {
+          setUserId(data.user_id);
+          console.log("User ID:", data.user_id);
+        } else {
+          console.error("No user_id returned from API.");
+        }
+      })
+      .catch((error) => console.error("Fetch error: ", error));
+  }, []);
 
   // Get reading list for user
   useEffect(() => {
-    fetch(`${baseURL}/users/${userId}/reading_list/`)
+    if (!userId) return; // If userId is null, undefined, 0, '', stop here
+
+    fetch(`${baseURL}users/${userId}/reading_list/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok " + response.statusText);
@@ -32,7 +56,7 @@ function App() {
         }
       })
       .catch((error) => console.error("Fetch error: ", error));
-  }, []);
+  }, [userId]);
 
   // Get books from database
   useEffect(() => {
