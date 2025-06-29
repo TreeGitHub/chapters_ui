@@ -4,16 +4,41 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BooksGrid from "./components/BooksGrid";
 import Readlist from "./components/Readlist";
+import LoginModal from "./components/LoginModal"; // adjust the path if needed
+
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 const baseURL = "http://localhost:4000/api/";
 
 function App() {
   const [books, setBooks] = useState([]);
   const [readlist, setReadlist] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
+  const [username, setUsername] = useState("");
 
-  useEffect(() => {
+  const handleLogin = (inputUsername, password) => {
+    fetch(`${baseURL}users?name=${inputUsername}&password=${password}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.user_id) {
+          setUserId(data.user_id);
+          setUsername(inputUsername); // ✅ correctly stores the name
+          setShowLogin(false);
+        } else {
+          alert("Invalid credentials");
+        }
+      })
+      .catch((error) => console.error("Fetch error: ", error));
+  };
+
+  /*useEffect(() => {
     const username = "kate";
     const password = "password";
 
@@ -34,7 +59,7 @@ function App() {
       })
       .catch((error) => console.error("Fetch error: ", error));
   }, []);
-
+*/
   // Get reading list for user
   useEffect(() => {
     if (!userId) return; // If userId is null, undefined, 0, '', stop here
@@ -115,12 +140,25 @@ function App() {
         console.error("Error updating readlist:", error);
       });
   };
-
   return (
     <div className="App">
       <div className="container">
         <Header></Header>
-
+        <div className="login-container">
+          {userId ? (
+            <span className="user-greeting">Welcome, {username}</span>
+          ) : (
+            <button className="login-button" onClick={() => setShowLogin(true)}>
+              Login
+            </button>
+          )}
+        </div>
+        {showLogin && (
+          <LoginModal
+            onClose={() => setShowLogin(false)}
+            onLogin={handleLogin}
+          />
+        )}
         <Router>
           <nav>
             <ul>
