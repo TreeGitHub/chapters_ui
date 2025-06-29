@@ -37,29 +37,6 @@ function App() {
       })
       .catch((error) => console.error("Fetch error: ", error));
   };
-
-  /*useEffect(() => {
-    const username = "kate";
-    const password = "password";
-
-    fetch(`${baseURL}users?name=${username}&password=${password}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok " + response.statusText);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.user_id) {
-          setUserId(data.user_id);
-          console.log("User ID:", data.user_id);
-        } else {
-          console.error("No user_id returned from API.");
-        }
-      })
-      .catch((error) => console.error("Fetch error: ", error));
-  }, []);
-*/
   // Get reading list for user
   useEffect(() => {
     if (!userId) return; // If userId is null, undefined, 0, '', stop here
