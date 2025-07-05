@@ -200,7 +200,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #e7f2f1;
+  background-color: #fbc600;
   color: black;
 }
 
@@ -338,9 +338,8 @@ border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .login-button:hover {
-  background-color: #e7f2f1;
+  background-color: #fbc600;
 }
 .user-greeting {
   background-color: #fbc600;
@@ -351,4 +350,86 @@ border-radius: 5px;
   font-weight: bold;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
   display: inline-block;
+}
+
+.signup-button {
+  margin-left: 1rem;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.signup-button:hover {
+  background-color: #fbc600;
+  color: black;
+}
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+  min-height: 80vh;
+  background-color: #1a1a1a;
+}
+
+.signup-form {
+  background-color: #2e2e2e;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signup-form form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: #fbc600;
+  box-shadow: 0 0 8px #fbc600;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.signup-form button {
+  width: 100%;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.signup-form button:hover {
+  background-color: #fbc600;
 }

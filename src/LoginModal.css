@@ -11,7 +11,8 @@
 }
 
 .modal {
-  background-color: #2e2e2e; /* lighter dark */  color: white;
+  background-color: #2e2e2e; /* lighter dark */  
+  color: white;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -59,7 +60,16 @@
   box-shadow: 0 0 8px #fbc600;
   background-color: rgba(255, 255, 255, 0.15);
 }
-
+.modal input[type="submit"] {
+  background-color: #fbc600; /* yellow */
+  color: black;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s, transform 0.2s;
+}
 
 .modal-actions {
   display: flex;
@@ -67,8 +77,8 @@
 }
 
 .modal-actions button {
-  background-color: #2196f3;
-  color: white;
+   background-color: #ffffff;
+  color: black;
   border: none;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
@@ -78,5 +88,5 @@
 }
 
 .modal-actions button:hover {
-  background-color: #1976d2;
+  background-color: #fbc600;
 }

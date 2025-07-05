@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BooksGrid from "./components/BooksGrid";
 import Readlist from "./components/Readlist";
-import LoginModal from "./components/LoginModal"; // adjust the path if needed
+import LoginModal from "./components/LoginModal";
+import SignUp from "./components/SignUp";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -15,11 +16,11 @@ function App() {
   const [books, setBooks] = useState([]);
   const [readlist, setReadlist] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [name, setName] = useState("");
   const [showLogin, setShowLogin] = useState(false);
-  const [username, setUsername] = useState("");
 
   const handleLogin = (inputUsername, password) => {
-    fetch(`${baseURL}users?name=${inputUsername}&password=${password}`)
+    fetch(`${baseURL}users?username=${inputUsername}&password=${password}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok " + response.statusText);
@@ -29,7 +30,7 @@ function App() {
       .then((data) => {
         if (data.user_id) {
           setUserId(data.user_id);
-          setUsername(inputUsername); // ✅ correctly stores the name
+          setName(data.name);
           setShowLogin(false);
         } else {
           alert("Invalid credentials");
@@ -49,8 +50,8 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        if (Array.isArray(data.data)) {
-          const ids = data.data.map((book) => book.id); // only store IDs
+        if (Array.isArray(data)) {
+          const ids = data.map((book) => book.id); // only store IDs
           setReadlist(ids);
           console.log("Readlist (IDs):", ids);
         } else {
@@ -71,8 +72,8 @@ function App() {
       })
       .then((data) => {
         // Extract the books array from the 'data' property
-        if (Array.isArray(data.data)) {
-          setBooks(data.data); // Assuming the books are in the 'data' property
+        if (Array.isArray(data)) {
+          setBooks(data); // Assuming the response is an array of book objects
         } else {
           console.error("Fetched data is not an array:", data);
         }
@@ -118,35 +119,46 @@ function App() {
       });
   };
   return (
-    <div className="App">
-      <div className="container">
-        <Header></Header>
-        <div className="login-container">
-          {userId ? (
-            <span className="user-greeting">Welcome, {username}</span>
-          ) : (
-            <button className="login-button" onClick={() => setShowLogin(true)}>
-              Login
-            </button>
+    <Router>
+      <div className="App">
+        <div className="container">
+          <Header />
+          <div className="login-container">
+            {userId ? (
+              <span className="user-greeting">Welcome, {name}</span>
+            ) : (
+              <>
+                <button
+                  className="login-button"
+                  onClick={() => setShowLogin(true)}
+                >
+                  Login
+                </button>
+                <Link to="/signup" className="signup-button">
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+
+          {showLogin && (
+            <LoginModal
+              onClose={() => setShowLogin(false)}
+              onLogin={handleLogin}
+            />
           )}
-        </div>
-        {showLogin && (
-          <LoginModal
-            onClose={() => setShowLogin(false)}
-            onLogin={handleLogin}
-          />
-        )}
-        <Router>
+
           <nav>
             <ul>
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/Readlist">Readlist</Link>
+                <Link to="/readlist">Readlist</Link>
               </li>
             </ul>
           </nav>
+
           <Routes>
             <Route
               path="/"
@@ -157,22 +169,26 @@ function App() {
                   toggleReadlist={toggleReadlist}
                 />
               }
-            ></Route>
+            />
             <Route
               path="/readlist"
               element={
                 <Readlist
-                  readlist={readlist}
                   books={books}
+                  readlist={readlist}
                   toggleReadlist={toggleReadlist}
                 />
               }
-            ></Route>
+            />
+            <Route
+              path="/signup"
+              element={<SignUp setUserId={setUserId} setName={setName} />}
+            />
           </Routes>
-        </Router>
+        </div>
+        <Footer />
       </div>
-      <Footer></Footer>
-    </div>
+    </Router>
   );
 }
 
