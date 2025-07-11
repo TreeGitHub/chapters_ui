@@ -1,4 +1,5 @@
 📚 Chapters UI
+
 🎯 Purpose
 
 This is the frontend of the Chapters book tracking app. It provides a user-friendly interface for:
