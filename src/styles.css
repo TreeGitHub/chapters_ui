@@ -120,6 +120,13 @@ body {
   margin-right: 10px;
 }
 
+.book-card-price {
+  font-size: 1.1rem;
+  color: #fbc600;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
 .Readlist-btn {
   border: none;
   background: #2196f3;
@@ -341,6 +348,20 @@ border-radius: 5px;
 .login-button:hover {
   background-color: #fbc600;
 }
+.logout-button {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.logout-button:hover {
+  background-color: #fbc600;
+}
 .user-greeting {
   background-color: #fbc600;
   color: black;
@@ -350,6 +371,7 @@ border-radius: 5px;
   font-weight: bold;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
   display: inline-block;
+  margin-right: 0.5rem; 
 }
 
 .signup-button {
@@ -432,4 +454,72 @@ border-radius: 5px;
 
 .signup-form button:hover {
   background-color: #fbc600;
+}
+
+.order-summary-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+  from { right: -400px; }
+  to { right: 0; }
+}
+
+.order-summary-content {
+  width: 100%;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  position: relative;
+  color: #222; /* Add this line for dark text */
+}
+
+.close-popup {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.order-summary-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-summary-content li {
+  margin-bottom: 0.5rem;
+}
+
+.order-total {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.checkout-button, .pay-button {
+  background-color: #fbc600;
+  color: black;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.checkout-button:hover, .pay-button:hover:enabled {
+  background-color: #ffd700;
 }

@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "../styles.css"; // Importing the styles.css file
 import BookCard from "./BookCard";
 
-export default function BooksGrid({ books, readlist, toggleReadlist }) {
+export default function BooksGrid({
+  books,
+  readlist,
+  toggleReadlist,
+  addToCart,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [genre, setGenre] = useState("All");
   const [rating, setRating] = useState("All");
@@ -93,12 +98,14 @@ export default function BooksGrid({ books, readlist, toggleReadlist }) {
       <div className="books-grid">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
-            <BookCard
-              book={book}
-              key={book.id}
-              toggleReadlist={toggleReadlist}
-              isReadlisted={readlist.includes(book.id)}
-            ></BookCard>
+            <div key={book.id}>
+              <BookCard
+                book={book}
+                toggleReadlist={toggleReadlist}
+                isReadlisted={readlist.includes(book.id)}
+              />
+              <button onClick={() => addToCart(book)}>Add to Cart</button>
+            </div>
           ))
         ) : (
           <p>No books available.</p>

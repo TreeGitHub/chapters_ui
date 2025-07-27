@@ -6,6 +6,7 @@ import BooksGrid from "./components/BooksGrid";
 import Readlist from "./components/Readlist";
 import LoginModal from "./components/LoginModal";
 import SignUp from "./components/SignUp";
+import Cart from "./components/Cart";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -18,7 +19,28 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [name, setName] = useState("");
   const [showLogin, setShowLogin] = useState(false);
+  const [cart, setCart] = useState([]);
 
+  const addToCart = (book) => {
+    setCart((prevCart) => [...prevCart, book]);
+  };
+  const removeFromCart = (bookId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== bookId));
+  };
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    const storedName = localStorage.getItem("name");
+    if (storedUserId && storedName) {
+      setUserId(storedUserId);
+      setName(storedName);
+    }
+  }, []);
+  const handleLogout = () => {
+    setUserId(null);
+    setName("");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("name");
+  };
   const handleLogin = (inputUsername, password) => {
     fetch(`${baseURL}users?username=${inputUsername}&password=${password}`)
       .then((response) => {
@@ -32,6 +54,9 @@ function App() {
           setUserId(data.user_id);
           setName(data.name);
           setShowLogin(false);
+          // Persist login in localStorage
+          localStorage.setItem("userId", data.user_id);
+          localStorage.setItem("name", data.name);
         } else {
           alert("Invalid credentials");
         }
@@ -125,7 +150,12 @@ function App() {
           <Header />
           <div className="login-container">
             {userId ? (
-              <span className="user-greeting">Welcome, {name}</span>
+              <>
+                <span className="user-greeting">Welcome, {name}</span>
+                <button className="logout-button" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
             ) : (
               <>
                 <button
@@ -154,7 +184,10 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/readlist">Readlist</Link>
+                <Link to="/readlist">Readlist ({readlist.length}) </Link>
+              </li>
+              <li>
+                <Link to="/cart">Cart ({cart.length})</Link>
               </li>
             </ul>
           </nav>
@@ -167,6 +200,7 @@ function App() {
                   books={books}
                   readlist={readlist}
                   toggleReadlist={toggleReadlist}
+                  addToCart={addToCart}
                 />
               }
             />
@@ -183,6 +217,10 @@ function App() {
             <Route
               path="/signup"
               element={<SignUp setUserId={setUserId} setName={setName} />}
+            />
+            <Route
+              path="/cart"
+              element={<Cart cart={cart} removeFromCart={removeFromCart} />}
             />
           </Routes>
         </div>

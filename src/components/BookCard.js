@@ -21,6 +21,19 @@ export default function BookCard({ book, isReadlisted, toggleReadlist }) {
       />
       <div className="book-card-info">
         <h3 className="book-card-title">{book.title}</h3>
+        <div className="book-card-price">
+          {book.price
+            ? (() => {
+                // Remove $ if present and parse as float
+                const num = parseFloat(
+                  typeof book.price === "string"
+                    ? book.price.replace(/^\$/, "")
+                    : book.price
+                );
+                return Number.isFinite(num) ? `$${num.toFixed(2)}` : "$0.00";
+              })()
+            : "$0.00"}
+        </div>
         <div>
           <span className="book-card-genre">{book.genre}</span>
           <span className={`book-card-rating ${getRatingClass(book.rating)}`}>
