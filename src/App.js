@@ -187,7 +187,7 @@ function App() {
                 <Link to="/readlist">Readlist ({readlist.length}) </Link>
               </li>
               <li>
-                <Link to="/cart">Cart ({cart.length})</Link>
+                <Link to="/cart">🛒 Cart ({cart.length})</Link>
               </li>
             </ul>
           </nav>
@@ -201,6 +201,8 @@ function App() {
                   readlist={readlist}
                   toggleReadlist={toggleReadlist}
                   addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  cart={cart}
                 />
               }
             />
@@ -211,6 +213,9 @@ function App() {
                   books={books}
                   readlist={readlist}
                   toggleReadlist={toggleReadlist}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  cart={cart}
                 />
               }
             />

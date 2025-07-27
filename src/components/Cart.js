@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles.css";
+import BooksGrid from "./BooksGrid";
 import BookCard from "./BookCard";
 
 function Cart({ cart, removeFromCart }) {
@@ -18,26 +19,20 @@ function Cart({ cart, removeFromCart }) {
 
   return (
     <div>
-      <h2>Your Cart</h2>
+      <h1 className="title">Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
-          <ul>
-            {cart.map((book) => (
-              <li
-                key={book.id}
-                style={{ listStyle: "none", marginBottom: "1rem" }}
-              >
-                <BookCard
-                  book={book}
-                  isReadlisted={false} // or pass actual readlist state if you want
-                  toggleReadlist={() => {}} // or pass actual function if needed
-                />
-                <button onClick={() => removeFromCart(book.id)}>Remove</button>
-              </li>
-            ))}
-          </ul>
+          <BooksGrid
+            books={cart}
+            readlist={[]} // or pass actual readlist if you want toggling
+            toggleReadlist={() => {}} // or actual function if you want toggling
+            addToCart={() => {}} // disable add in cart view
+            removeFromCart={removeFromCart}
+            cart={cart}
+            showReadlistToggle={false} // if you want to hide readlist toggle
+          />
           <button
             className="checkout-button"
             onClick={() => setShowSummary(true)}
@@ -60,10 +55,8 @@ function Cart({ cart, removeFromCart }) {
             <ul>
               {cart.map((book) => (
                 <li key={book.id}>
-                  {book.title} — $
-                  {typeof book.price === "string"
-                    ? book.price.replace(/^\$/, "")
-                    : (book.price || 0).toFixed(2)}
+                  {book.title} —{" "}
+                  {book.price ? `$${book.price.replace(/^\$/, "")}` : "$0.00"}
                 </li>
               ))}
             </ul>

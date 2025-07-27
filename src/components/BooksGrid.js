@@ -7,6 +7,9 @@ export default function BooksGrid({
   readlist,
   toggleReadlist,
   addToCart,
+  cart,
+  removeFromCart,
+  showReadlistToggle,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [genre, setGenre] = useState("All");
@@ -101,10 +104,17 @@ export default function BooksGrid({
             <div key={book.id}>
               <BookCard
                 book={book}
-                toggleReadlist={toggleReadlist}
                 isReadlisted={readlist.includes(book.id)}
+                toggleReadlist={toggleReadlist}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+                isInCart={cart.some((b) => b.id === book.id)}
+                showReadlistToggle={
+                  typeof showReadlistToggle === "boolean"
+                    ? showReadlistToggle
+                    : true
+                }
               />
-              <button onClick={() => addToCart(book)}>Add to Cart</button>
             </div>
           ))
         ) : (

@@ -2,7 +2,14 @@ import React from "react";
 import "../styles.css"; // Importing the styles.css file
 import BookCard from "./BookCard";
 
-export default function Readlist({ books, readlist, toggleReadlist }) {
+export default function Readlist({
+  books,
+  readlist,
+  toggleReadlist,
+  addToCart,
+  removeFromCart,
+  cart,
+}) {
   return (
     <div>
       <h1 className="title">Your Read List</h1>
@@ -18,7 +25,11 @@ export default function Readlist({ books, readlist, toggleReadlist }) {
                 book={book}
                 toggleReadlist={toggleReadlist}
                 isReadlisted={true}
-              ></BookCard>
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+                isInCart={cart.some((b) => b.id === book.id)}
+                showAddToCart={true}
+              />
             ) : null;
           })
         )}

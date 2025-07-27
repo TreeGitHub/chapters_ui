@@ -1,7 +1,16 @@
 import React from "react";
 import "../styles.css"; // Importing the styles.css file
 
-export default function BookCard({ book, isReadlisted, toggleReadlist }) {
+export default function BookCard({
+  book,
+  isReadlisted,
+  toggleReadlist,
+  addToCart,
+  removeFromCart,
+  isInCart,
+  showAddToCart = true,
+  showReadlistToggle = true,
+}) {
   const handlerError = (e) => {
     e.target.src = "images/default.jpg";
   };
@@ -40,19 +49,39 @@ export default function BookCard({ book, isReadlisted, toggleReadlist }) {
             {book.rating}
           </span>
         </div>
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={isReadlisted}
-            onChange={() => toggleReadlist(book.id)}
-          ></input>
-
-          <span className="slider">
-            <span className="slider-label">
-              {isReadlisted ? "In Readlist" : "Add to Readlist"}
+        {showReadlistToggle && (
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={isReadlisted}
+              onChange={() => toggleReadlist && toggleReadlist(book.id)}
+            />
+            <span className="slider">
+              <span className="slider-label">
+                {isReadlisted ? "In Readlist" : "Add to Readlist"}
+              </span>
             </span>
-          </span>
-        </label>
+          </label>
+        )}
+        {showAddToCart &&
+          (addToCart || removeFromCart) &&
+          (isInCart ? (
+            <button
+              className="cart-action-btn"
+              onClick={() => removeFromCart(book.id)}
+              aria-label="Remove from cart"
+            >
+              Remove from Cart
+            </button>
+          ) : (
+            <button
+              className="cart-action-btn"
+              onClick={() => addToCart(book)}
+              aria-label="Add to cart"
+            >
+              🛒 Add to Cart
+            </button>
+          ))}
       </div>
     </div>
   );
