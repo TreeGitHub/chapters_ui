@@ -563,3 +563,30 @@ border-radius: 5px;
   background-color: #ffd6d6;
   color: #b71c1c;
 }
+/* Payment Fields Container */
+.payment-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Each field wrapper */
+.payment-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Field labels */
+.payment-field label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+/* Adjust pay button spacing inside popup */
+.order-summary-content .pay-button {
+  margin-top: 15px;
+}
