@@ -7,19 +7,32 @@ function SignUp({ setUserId, setName }) {
   const [username, setUsername] = useState(""); // login username
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [billingAddress, setBillingAddress] = useState("");
   const baseURL = "http://localhost:4000/api/";
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Sign Up Info:", { name, username, email, password });
+    console.log("Sign Up Info:", {
+      name,
+      username,
+      email,
+      password,
+      billingAddress,
+    });
 
     fetch(`${baseURL}users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, username, email, password }),
+      body: JSON.stringify({
+        name,
+        username,
+        email,
+        password,
+        billing_address: billingAddress,
+      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -59,6 +72,15 @@ function SignUp({ setUserId, setName }) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Billing Address:
+            <input
+              type="billingAddress"
+              value={billingAddress}
+              onChange={(e) => setBillingAddress(e.target.value)}
               required
             />
           </label>
