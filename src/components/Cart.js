@@ -43,7 +43,7 @@ function Cart({ cart, removeFromCart }) {
           style: {
             base: { fontSize: "16px", color: "#111", lineHeight: "1.5em" },
           },
-        }
+        },
       );
 
       await Promise.all([
@@ -68,7 +68,19 @@ function Cart({ cart, removeFromCart }) {
       const result = await cardHandler.process({
         cardholder_name: "Cardholder Name",
       });
+      console.log(result);
       if (result.status === "success" || result.status === "pending") {
+        const chargeRes = await fetch(
+          "http://localhost:4000/api/checkout/charge",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token_id: result.data.token_id, cart }),
+          },
+        );
+        const chargeData = await chargeRes.json();
+        console.log("Charge response:", chargeData);
+
         alert("Payment processed successfully!");
       } else {
         alert("Payment failed: " + result.data.reason);
