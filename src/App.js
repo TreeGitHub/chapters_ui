@@ -116,7 +116,7 @@ function App() {
 
     // Optimistically update state
     setReadlist((prev) =>
-      isInList ? prev.filter((id) => id !== bookId) : [...prev, bookId]
+      isInList ? prev.filter((id) => id !== bookId) : [...prev, bookId],
     );
 
     // Send the API call
@@ -132,7 +132,7 @@ function App() {
         ...(method === "POST"
           ? { body: JSON.stringify({ book_id: bookId }) }
           : {}),
-      }
+      },
     )
       .then((response) => {
         if (!response.ok) {
@@ -225,7 +225,13 @@ function App() {
             />
             <Route
               path="/cart"
-              element={<Cart cart={cart} removeFromCart={removeFromCart} />}
+              element={
+                <Cart
+                  cart={cart}
+                  removeFromCart={removeFromCart}
+                  userId={userId}
+                />
+              }
             />
           </Routes>
         </div>

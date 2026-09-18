@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles.css";
 import BooksGrid from "./BooksGrid";
 
-function Cart({ cart, removeFromCart }) {
+function Cart({ cart, removeFromCart, userId }) {
   const [showSummary, setShowSummary] = useState(false);
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState(null);
@@ -75,13 +75,23 @@ function Cart({ cart, removeFromCart }) {
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token_id: result.data.token_id, cart }),
+            body: JSON.stringify({
+              token_id: result.data.token_id,
+              cart,
+              user_id: userId,
+            }),
           },
         );
         const chargeData = await chargeRes.json();
         console.log("Charge response:", chargeData);
-
-        alert("Payment processed successfully!");
+        if (chargeData.order_id) {
+          alert(
+            "Payment processed successfully! Order Number: " +
+              chargeData.order_id,
+          );
+        } else {
+          alert("Payment failed: " + chargeData.error);
+        }
       } else {
         alert("Payment failed: " + result.data.reason);
       }
