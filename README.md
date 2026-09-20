@@ -2,54 +2,42 @@
 
 🎯 Purpose
 
-This is the frontend of the Chapters book tracking app. It provides a user-friendly interface for:
-
-    Browsing available books
-
-    Managing a personal reading list
-
-    Handling user signup and login
+This is the frontend of Chapters, an online bookstore. It provides browsing,
+a personal reading list, and a full checkout/payments flow backed by
+Hellgate's hosted card fields.
 
 🧰 Technologies Used
 
-    React – for building the UI
+    React – UI
+    React Router – client-side navigation
+    Fetch API – communicating with the backend
+    Hellgate Web SDK – loaded via <script> in public/index.html, provides
+      the hosted card-tokenization fields used at checkout
 
-    React Router – for client-side navigation
+🏗️ Architecture
 
-    Fetch API – for communicating with the backend
-
-    CSS – for styling and layout
-
-🧠 Responsibilities
-
-    Renders book listings, readlist view, and authentication forms
-
-    Handles user interactions:
-
-        Signing up & logging in
-
-        Adding/removing books from the readlist
-
-    Manages application state for:
-
-        Logged-in user
-
-        Book catalog
-
-        User’s readlist
-
-    Connects to the books_api (Elixir/Phoenix) backend via HTTP requests
+    App.js holds top-level state (cart, logged-in userId) and passes it
+      down as props to child components — there's no global state
+      management library in use
+    Cart.js owns the whole checkout flow:
+      1. Requests a session from the backend (/api/checkout/session),
+         with prices derived server-side from the real catalogue, not
+         from whatever the cart happens to hold
+      2. Mounts Hellgate's hosted card fields using that session
+      3. On submission, tokenizes the card via the Hellgate SDK
+         (cardHandler.process()) — this step only exchanges card data
+         for a token, it does not charge anything
+      4. Sends that token to the backend (/api/checkout/charge), which
+         does the actual charging and persistence
+      5. Shows the real outcome (order number or error) based on the
+         backend's actual response — not a hardcoded message
 
 🛠️ Environment Setup
 
-To run the React frontend locally, make sure you have the following installed:
 📦 Prerequisites
-Tool Version (Recommended)
-Node.js 18+
-npm 9+ (comes with Node)
-Git Any recent version
 
-    ✅ This project was created with create-react-app (or similar tooling) and uses fetch() to communicate with the Elixir API backend.
+    Node.js 18+
+    npm 9+
 
 🚀 Setup Steps
 
@@ -59,5 +47,7 @@ Git Any recent version
 2. Start the development server
    npm start
 
-3. Open your browser and go to http://localhost:3000
-   ⚠️ Make sure your Phoenix backend is running at http://localhost:4000 so the frontend can access the API.
+3. Open http://localhost:3000
+   Requires the Phoenix backend running at http://localhost:4000, with
+   its own Hellgate environment variables configured — see books_api's
+   README for details. Checkout will fail without them.

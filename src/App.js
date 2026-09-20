@@ -7,6 +7,7 @@ import Readlist from "./components/Readlist";
 import LoginModal from "./components/LoginModal";
 import SignUp from "./components/SignUp";
 import Cart from "./components/Cart";
+import OrderList from "./components/OrderList";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -20,6 +21,7 @@ function App() {
   const [name, setName] = useState("");
   const [showLogin, setShowLogin] = useState(false);
   const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const addToCart = (book) => {
     setCart((prevCart) => [...prevCart, book]);
@@ -81,6 +83,27 @@ function App() {
           console.log("Readlist (IDs):", ids);
         } else {
           console.error("Fetched reading list is not an array:", data);
+        }
+      })
+      .catch((error) => console.error("Fetch error: ", error));
+  }, [userId]);
+
+  // Get orders for user
+  useEffect(() => {
+    if (!userId) return; // If userId is null, undefined, 0, '', stop here
+    fetch(`${baseURL}users/${userId}/orders/`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Extract the orders array from the 'data' property
+        if (Array.isArray(data)) {
+          setOrders(data); // Assuming the response is an array of book objects
+        } else {
+          console.error("Fetched data is not an array:", data);
         }
       })
       .catch((error) => console.error("Fetch error: ", error));
@@ -189,6 +212,9 @@ function App() {
               <li>
                 <Link to="/cart">🛒 Cart ({cart.length})</Link>
               </li>
+              <li>
+                <Link to="/orders">📦 Orders</Link>
+              </li>
             </ul>
           </nav>
 
@@ -233,6 +259,7 @@ function App() {
                 />
               }
             />
+            <Route path="/orders" element={<OrderList orders={orders} />} />
           </Routes>
         </div>
         <Footer />
